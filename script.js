@@ -1,18 +1,22 @@
 function updateTimer() {
-    let now = new Date(); // current date & time
+    let now = new Date();
 
-    // format date
-    let date = now.toLocaleDateString();
+    // format manually (DD/MM/YYYY HH:MM:SS)
+    let day = String(now.getDate()).padStart(2, '0');
+    let month = String(now.getMonth() + 1).padStart(2, '0');
+    let year = now.getFullYear();
 
-    // format time
-    let time = now.toLocaleTimeString();
+    let hours = String(now.getHours()).padStart(2, '0');
+    let minutes = String(now.getMinutes()).padStart(2, '0');
+    let seconds = String(now.getSeconds()).padStart(2, '0');
 
-    // show in p tag
-    document.getElementById("timer").textContent = date + " " + time;
+    let formattedTime = `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+
+    document.getElementById("timer").textContent = formattedTime;
 }
 
-// run every second
+// update every second
 setInterval(updateTimer, 1000);
 
-// call once immediately (important)
+// initial call
 updateTimer();
